@@ -1,3 +1,4 @@
+# Test 1
 # name = input("What is your name? \n")
 # print("Hello,", name)
 # a = 1
@@ -6,6 +7,8 @@
 # if (a == 1) or (a != 2):
 #     print("a != ", b)
 
+
+# Blackjack game
 import random
 
 cardDeck = [6, 7, 8, 9, 10, 2, 3, 4, 11] * 4
