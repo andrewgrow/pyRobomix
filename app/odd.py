@@ -1,17 +1,27 @@
 from datetime import datetime
+from time import sleep
+from random import randint
+
 import os
 import sys
 import html
 
-odds = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23,25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57, 59]
-# right_this_minute = datetime.today().minute
+# odds = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53, 55,
+#         57, 59]
 #
 # print('Today is ' + datetime.today().__str__())
 #
-# if right_this_minute in odds:
-#     print("This minute seems a little odd (%d)" % right_this_minute)
-# else:
-#     print("Not an odd minute (%d)" % right_this_minute)
+# for i in range(15):
+#     right_this_minute = datetime.today().minute
+#     if right_this_minute in odds:
+#         print("This minute seems a little odd (%d)" % right_this_minute)
+#     else:
+#         print("Not an odd minute (%d)" % right_this_minute)
+#     randomTime = randint(1, 60)
+#     print('Wait time ' + randomTime.__str__())
+#     sleep(randomTime)
+
+
 #
 # where_i_am = os.getcwd()
 # print("My current path is " + where_i_am)
@@ -22,6 +32,17 @@ odds = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23,25, 27, 29, 31, 33, 35, 37, 39
 # print(html.escape('This HTML fragment contains a <script>script</script> tag.'))
 # print(html.unescape("I &hearts; Python's &lt;standard library&gt;."))
 
-for i in range(5):
-    i += 1
-    print(i)
+word = 'bottles'
+for beer in range(99, 0, -1):
+    print(beer, word, 'of beer on the wall.')
+    print(beer, 'of beer.')
+    print('Take one down.')
+    print('Pass it around.')
+    if beer == 1:
+        print('No more bottle of beer on the wall.')
+    else:
+        new_beer = beer - 1
+        if new_beer == 1:
+            word = 'bottle'
+        print(new_beer, word, 'of beer on the wall.')
+    print()
