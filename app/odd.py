@@ -32,17 +32,24 @@ import html
 # print(html.escape('This HTML fragment contains a <script>script</script> tag.'))
 # print(html.unescape("I &hearts; Python's &lt;standard library&gt;."))
 
-word = 'bottles'
-for beer in range(99, 0, -1):
-    print(beer, word, 'of beer on the wall.')
-    print(beer, 'of beer.')
-    print('Take one down.')
-    print('Pass it around.')
-    if beer == 1:
-        print('No more bottle of beer on the wall.')
-    else:
-        new_beer = beer - 1
-        if new_beer == 1:
-            word = 'bottle'
-        print(new_beer, word, 'of beer on the wall.')
-    print()
+# word = 'bottles'
+# for beer in range(99, 0, -1):
+#     print(beer, word, 'of beer on the wall.')
+#     print(beer, 'of beer.')
+#     print('Take one down.')
+#     print('Pass it around.')
+#     if beer == 1:
+#         print('No more bottle of beer on the wall.')
+#     else:
+#         new_beer = beer - 1
+#         if new_beer == 1:
+#             word = 'bottle'
+#         print(new_beer, word, 'of beer on the wall.')
+#     print()
+
+vowels = ['a', 'e', 'i', 'o', 'u']
+word = "Milliways"
+
+for letter in word:
+    if letter in vowels:
+        print(letter)
