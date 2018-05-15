@@ -47,9 +47,28 @@ import html
 #         print(new_beer, word, 'of beer on the wall.')
 #     print()
 
-vowels = ['a', 'e', 'i', 'o', 'u']
-word = "Milliways"
+# vowels = ['a', 'e', 'i', 'o', 'u']
+# word = "Milliways"
+# found = []
+# print('length of found =', len(found))
+#
+# for letter in word:
+#     if letter in vowels:
+#         print(letter)
+#     else:
+#         found.append(letter)
+#
+# print('length of found =', len(found))
+# print(found.pop())
+# print('length of found =', len(found))
+#
+# found.extend(vowels)
+#
+# print('length of found =', len(found))
 
-for letter in word:
-    if letter in vowels:
-        print(letter)
+phrase = "Don't panic!"
+plist = list(phrase)
+print(phrase)
+print(plist)
+
+
