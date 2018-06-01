@@ -1,14 +1,31 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 # For starting use
+# cd app
 # py -3 robomix.py
 #
 
+
 @app.route('/')
 def hello():
-    return "<h1 style='color:blue'>Hello There 4!</h1>"
+    return "<h1 style='color:blue'>Hello world from Robomix!</h1>"
+
+
+@app.route('/search4')
+def do_search() -> str:
+    return str(search4letters('life, the universe, and everything', 'eiru,!'))
+
+
+def search4letters(phrase: str, letters: str='aeiou') -> set:
+    """Return a set of the 'letters' found in 'phrase'."""
+    return set(letters).intersection(set(phrase))
+
+
+@app.route('/entry')
+def entry_page() -> 'html':
+    return render_template('entry.html', the_title='Welcome to search4letters on the Web!')
 
 
 @app.route('/v1', methods=['POST'])
