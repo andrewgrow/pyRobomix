@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_from_directory, redirect
 
 app = Flask(__name__)
 
@@ -16,13 +16,17 @@ def favicon():
 
 
 @app.route('/')
-def hello():
+def index():
     return "<h1 style='color:blue'>Hello world from Robomix!</h1>"
 
 
-@app.route('/search4')
-def do_search() -> str:
-    return str(search4letters('life, the universe, and everything', 'eiru,!'))
+@app.route('/search4',  methods=['POST'])
+def do_search() -> 'html':
+    phrase = request.form['phrase']
+    letters = request.form['letters']
+    results = str(search4letters(phrase, letters))
+    title = 'Here are your results: '
+    return render_template('results.html', the_title=title, the_letters=letters, the_phrase=phrase, the_results=results,)
 
 
 def search4letters(phrase: str, letters: str='aeiou') -> set:
@@ -33,6 +37,17 @@ def search4letters(phrase: str, letters: str='aeiou') -> set:
 @app.route('/entry')
 def entry_page() -> 'html':
     return render_template('entry.html', the_title='Welcome to search4letters on the Web!')
+
+
+@app.route('/some_address')
+def redirect_example() -> '301':
+    """It is an example for a redirect"""
+    return redirect('/', code=301)
+
+
+@app.errorhandler(404)
+def page_not_found(e) -> '404':
+    return render_template('error_page.html', the_title='Page Not Found', the_message=e), 404
 
 
 @app.route('/v1', methods=['POST'])
