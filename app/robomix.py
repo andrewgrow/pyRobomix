@@ -1,4 +1,6 @@
-from flask import Flask, request, render_template
+import os
+
+from flask import Flask, request, render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -6,6 +8,11 @@ app = Flask(__name__)
 # cd app
 # py -3 robomix.py
 #
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
 
 @app.route('/')
