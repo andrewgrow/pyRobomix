@@ -5,7 +5,7 @@ from flask import Flask, request, render_template, send_from_directory, redirect
 app = Flask(__name__)
 
 # For starting use
-# cd app
+# cd robomix
 # py -3 robomix.py
 #
 
