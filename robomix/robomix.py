@@ -17,7 +17,7 @@ def favicon():
 
 @app.route('/')
 def index():
-    return "<h1 style='color:blue'>Hello world from Robomix!</h1>"
+    return "<h1 style='color:blue'>Hello world from Robomix 2!</h1>"
 
 
 @app.route('/search4',  methods=['POST'])
