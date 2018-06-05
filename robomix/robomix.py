@@ -16,8 +16,8 @@ def favicon():
 
 
 @app.route('/')
-def index():
-    return "<h1 style='color:blue'>Hello world from Robomix 2!</h1>"
+def index() -> 'html':
+    return render_template('index.html')
 
 
 @app.route('/search4',  methods=['POST'])

@@ -1,0 +1,73 @@
+#sp-logo {
+    /* font-family: 'Righteous', cursive; */
+    color: #fff;
+}
+
+#sp-logo .logo-yellow {
+    color: #ffd200;
+}
+
+#sp-logo a:hover .logo-yellow {
+    color: #fff;
+    transition: all 0.3s ease;
+    transition-property: all;
+    transition-duration: 0.8s;
+    transition-timing-function: ease;
+    transition-delay: initial;
+}
+
+#sp-logo a:hover {
+    text-decoration: none;
+    border-bottom: 0;
+}
+
+.btn.btn-transparent {
+    border: 1px solid #ffd200;
+}
+.btn.btn-transparent:after {
+    background: #ffd200 !important;
+}
+
+.btn.btn-transparent {
+    text-shadow: none;
+    font-size: 16px;
+    background: none;
+    cursor: pointer;
+    z-index: 100;
+    padding: 20px 40px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    position: relative;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    font-family: Arial, sans-serif;
+}
+.btn.btn-transparent:after {
+    width: 0%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.btn.btn-transparent:hover:after {
+    width: 100%;
+}
+
+.btn.btn-transparent:hover {
+    color: black;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
