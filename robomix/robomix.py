@@ -3,6 +3,8 @@ import os
 from flask import Flask, request, render_template, send_from_directory, redirect
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 720
 
 # For starting use
 # cd robomix
@@ -14,10 +16,19 @@ app = Flask(__name__)
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
 
+# No cacheing at all for API endpoints.
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    if 'Cache-Control' not in response.headers:
+        response.headers['Cache-Control'] = 'no-store'
+    return response
+
 
 @app.route('/')
 def index() -> 'html':
-    return render_template('index.html')
+    title = 'Robomix: websites & mobile apps'
+    return render_template('index.html', the_title=title)
 
 
 @app.route('/search4',  methods=['POST'])
