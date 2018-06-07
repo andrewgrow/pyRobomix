@@ -1,6 +1,9 @@
 import os
 
+from entries.RobomixContent import ContentPage
+
 from flask import Flask, request, render_template, send_from_directory, redirect
+
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -15,6 +18,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 720
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+
 
 # No cacheing at all for API endpoints.
 @app.after_request
@@ -31,7 +35,26 @@ def index() -> 'html':
     return render_template('index.html', the_title=title)
 
 
-@app.route('/search4',  methods=['POST'])
+@app.route('/ajax_content')
+def suggestions():
+    href = request.args.get('jsdata')
+
+    about = ContentPage('About Us', 'about-us.html')
+    portfolio = ContentPage('Portfolio', 'content.html')
+    contacts = ContentPage('Contacts', 'content.html')
+
+    unit_case = {
+        '#about-us': about,
+        '#portfolio': portfolio,
+        '#contacts': contacts
+    }
+
+    content = unit_case.get(href, about)
+
+    return render_template(content.template, content_name=content.title)
+
+
+@app.route('/search4', methods=['POST'])
 def do_search() -> 'html':
     phrase = request.form['phrase']
     letters = request.form['letters']
@@ -45,9 +68,9 @@ def search4letters(phrase: str, letters: str='aeiou') -> set:
     return set(letters).intersection(set(phrase))
 
 
-@app.route('/entry')
+@app.route('/entries')
 def entry_page() -> 'html':
-    return render_template('entry.html', the_title='Welcome to search4letters on the Web!')
+    return render_template('entries.html', the_title='Welcome to search4letters on the Web!')
 
 
 @app.route('/some_address')
