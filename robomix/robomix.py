@@ -37,15 +37,15 @@ def index() -> 'html':
 
 @app.route('/ajax_content')
 def suggestions():
-    href = request.args.get('jsdata')
+    href = request.args.get('jsdata').split("#")[1]
 
     about = ContentPage('About Us', 'about.html')
     portfolio = ContentPage('Portfolio', 'content.html')
     # contacts = ContentPage('Contacts', 'content.html')
 
     unit_case = {
-        '#about': about,
-        '#portfolio': portfolio
+        'about': about,
+        'portfolio': portfolio
         # '#contacts': contacts
     }
 
@@ -68,9 +68,9 @@ def search4letters(phrase: str, letters: str='aeiou') -> set:
     return set(letters).intersection(set(phrase))
 
 
-@app.route('/entries')
+@app.route('/entry')
 def entry_page() -> 'html':
-    return render_template('entries.html', the_title='Welcome to search4letters on the Web!')
+    return render_template('entry.html', the_title='Welcome to search4letters on the Web!')
 
 
 @app.route('/some_address')
