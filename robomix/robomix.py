@@ -39,14 +39,14 @@ def index() -> 'html':
 def suggestions():
     href = request.args.get('jsdata')
 
-    about = ContentPage('About Us', 'about-us.html')
+    about = ContentPage('About Us', 'about.html')
     portfolio = ContentPage('Portfolio', 'content.html')
-    contacts = ContentPage('Contacts', 'content.html')
+    # contacts = ContentPage('Contacts', 'content.html')
 
     unit_case = {
-        '#about-us': about,
-        '#portfolio': portfolio,
-        '#contacts': contacts
+        '#about': about,
+        '#portfolio': portfolio
+        # '#contacts': contacts
     }
 
     content = unit_case.get(href, about)
