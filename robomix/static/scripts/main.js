@@ -6,19 +6,35 @@ $(".nav .nav-link").on("click", function(){
 $('#top_menu').find('a').bind('click', function(e){
     e.preventDefault();
     var href = $(this).attr('href');
-
-    $.ajax({
-      url: "/ajax_content",
-      type: "get",
-      data: {jsdata: href},
-      success: function(response) {
-        $("#body_content").html(response);
-//        dynamic change link
-//        window.history.pushState({"pageTitle":href},"", href);
-      },
-      error: function(xhr) {
-        // We may to do something to handle error
-      },
-      timeout : 1000 //timeout of the ajax call
-    });
+    getAjaxContent(href);
 });
+
+$('#welcome').find('a').bind('click', function(e){
+    e.preventDefault();
+    var href = $(this).attr('href');
+    getAjaxContent(href);
+});
+
+function getAjaxContent(href) {
+    $.ajax({
+        url: "/ajax_content",
+        type: "get",
+        data: {jsdata: href},
+        success: function(response) {
+        $("#body_content").html(response);
+        },
+        error: function(xhr) {
+            // We may to do something to handle error
+        },
+        timeout : 1000 //timeout of the ajax call
+    });
+}
+
+function email() {
+    email1='andrew'
+    email2='gahov'
+    email3='gmail'
+    full_address = email1 + "." + email2 + "@" + email3 + ".com"
+    html_str = "<p>You can contact me via email: <a href='mailto:" + full_address + "'>" + full_address + "</a></p>"
+    $("#email").html(html_str);
+}

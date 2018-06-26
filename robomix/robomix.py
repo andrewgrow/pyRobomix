@@ -31,7 +31,7 @@ def add_header(response):
 
 @app.route('/')
 def index() -> 'html':
-    title = 'Robomix: websites & mobile apps'
+    title = 'Android developer, Software Engineer, 18+ yrs experience'
     return render_template('index.html', the_title=title)
 
 
@@ -39,7 +39,7 @@ def index() -> 'html':
 def suggestions():
     href = request.args.get('jsdata').split("#")[1]
 
-    about = ContentPage('About Us', 'about.html')
+    about = ContentPage('About', 'about.html')
     portfolio = ContentPage('Portfolio', 'content.html')
     # contacts = ContentPage('Contacts', 'content.html')
 
