@@ -33,8 +33,7 @@ function getAjaxContent(href) {
 function email() {
     email1='andrew'
     email2='gahov'
-    email3='gmail'
-    full_address = email1 + "." + email2 + "@" + email3 + ".com"
-    html_str = "<p>You can contact me via email: <a href='mailto:" + full_address + "'>" + full_address + "</a></p>"
+    full_address = email1 + "@" + email2 + ".com"
+    html_str = "<p>You can contact me via email: <a style='font-size:22px;' href='mailto:" + full_address + "'>" + full_address + "</a></p>"
     $("#email").html(html_str);
 }
