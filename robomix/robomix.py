@@ -11,8 +11,8 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 720
 
 # For starting use
 # cd robomix
-# py -3 robomix.py
-#
+# win: py -3 robomix.py
+# macOs: python3 robomix.py
 
 
 @app.route('/favicon.ico')
