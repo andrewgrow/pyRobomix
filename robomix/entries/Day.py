@@ -9,6 +9,9 @@ class Day(object):
     def __str__(self):
         return '{'+'"name":' + '"' + self.day_name + '"' + ', "schedule":' + json.dumps(self.schedule)+'}'
 
+    def get_json(self):
+        return str(self)
+
 
 def make_json_from_list(jsons: list) -> str:
     result = '['

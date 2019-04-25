@@ -4,8 +4,7 @@ import json
 from entries.RobomixContent import ContentPage
 from entries.Day import *
 
-from flask import Flask, request, render_template, send_from_directory, redirect
-
+from flask import Flask, request, render_template, send_from_directory, redirect, abort, Response
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -134,13 +133,34 @@ def get_object() -> str:
     day_thursday = Day('thursday', thursday_list)
     day_friday = Day('friday', friday_list)
 
-    monday_json = str(day_monday)
-    tuesday_json = str(day_tuesday)
-    wednesday_json = str(day_wednesday)
-    thursday_json = str(day_thursday)
-    friday_json = str(day_friday)
+    all_days = {'monday':day_monday, 'tuesday':day_tuesday, 'wednesday':day_wednesday, 'thursday':day_thursday, 'friday':day_friday}
 
-    result: str = make_json_from_list([monday_json, tuesday_json, wednesday_json, thursday_json, friday_json])
+    monday_json = day_monday.get_json()
+    tuesday_json = day_tuesday.get_json()
+    wednesday_json = day_wednesday.get_json()
+    thursday_json = day_thursday.get_json()
+    friday_json = day_friday.get_json()
+
+    all = [monday_json, tuesday_json, wednesday_json, thursday_json, friday_json]
+
+    arguments = request.args
+    arguments_day = arguments.get('day', 'empty', str)
+    print('arg_day = ', arguments_day)
+
+    result = make_json_from_list(all)
+
+    # return all days if request does not have value 'day'
+    if arguments_day == 'empty':
+        return result
+
+    # return day if request has value 'day'
+    if all_days.__contains__(arguments_day):
+        day = all_days.get(arguments_day)
+        result = make_json_from_list([day.get_json()])
+    else:
+        # return error if we don have such day in list
+        abort(Response('wrong argument "day". Expected one of each: "monday, tuesday, wednesday, thursday, friday" but '
+                       'actual is ' + arguments_day, 400))
 
     return result
 
