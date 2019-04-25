@@ -1,6 +1,8 @@
 import os
+import json
 
 from entries.RobomixContent import ContentPage
+from entries.Day import *
 
 from flask import Flask, request, render_template, send_from_directory, redirect
 
@@ -115,6 +117,32 @@ def api_request() -> str:
 @app.route('/robots.txt')
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
+
+
+@app.route('/schedule', methods=['GET'])
+def get_object() -> str:
+
+    monday_list = ['mathematics', 'history', 'physics']
+    tuesday_list = ['history', 'mathematics', 'english']
+    wednesday_list = ['physics', 'physical health']
+    thursday_list = ['information technologies', 'computer science']
+    friday_list = ['mathematics', 'information technologies']
+
+    day_monday = Day('monday', monday_list)
+    day_tuesday = Day('tuesday', tuesday_list)
+    day_wednesday = Day('wednesday', wednesday_list)
+    day_thursday = Day('thursday', thursday_list)
+    day_friday = Day('friday', friday_list)
+
+    monday_json = str(day_monday)
+    tuesday_json = str(day_tuesday)
+    wednesday_json = str(day_wednesday)
+    thursday_json = str(day_thursday)
+    friday_json = str(day_friday)
+
+    result: str = make_json_from_list([monday_json, tuesday_json, wednesday_json, thursday_json, friday_json])
+
+    return result
 
 
 if __name__ == "__main__":
